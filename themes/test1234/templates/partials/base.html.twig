@@ -1,24 +1,33 @@
-<!doctype html>
-<html lang="en">
+{% set theme_config = attribute(config.themes, config.system.pages.theme) %}
+{% set is_sidebar = header.sidebar is sameas(true) or (header.sidebar is not defined and theme_config.sidebar is sameas(true)) %}
+<!DOCTYPE html>
+<html lang="{{ grav.language.getActive ?: theme_config.default_lang }}">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	{% block head deferred %}
+    <meta charset="utf-8" />
+    <title>{% if header.title %}{{ header.title|e('html') }} | {% endif %}{{ site.title|e('html') }}</title>
+    {% include 'partials/metadata.html.twig' %}
     <meta name="description" content="A layout example that shows off a responsive pricing table.">
-    <title>Test RadballKidZ Leipzig</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="icon" type="image/png" href="{{ url('theme://images/favicon.png', true) }}" />
+    <link rel="canonical" href="{{ page.url(true, true) }}" />
+    {% endblock head %}
 
-{% block stylesheets %}
-    {% do assets.addCss('theme://css/pure/pure-min.css', 100) %}
-    {% do assets.addCss('theme://css/pure/grids-responsive-min.css', 100) %}
-    {% do assets.addCss('theme://css/layouts/pricing/styles.css', 100) %}
-    {% do assets.addCss('theme://css/custom.css', 98) %}
-{% endblock %}
 
-{% block assets deferred %}
-    {{ assets.css()|raw }}
-    {{ assets.js()|raw }}
-{% endblock %}
+	{% block stylesheets %}
+	    {% do assets.addCss('theme://css/pure/pure-min.css', 100) %}
+	    {% do assets.addCss('theme://css/pure/grids-responsive-min.css', 100) %}
+	    {% do assets.addCss('theme://css/layouts/pricing/styles.css', 100) %}
+	    {% do assets.addCss('theme://css/custom.css', 98) %}
+	{% endblock %}
 
+	{% block assets deferred %}
+	    {{ assets.css()|raw }}
+	    {{ assets.js()|raw }}
+	{% endblock %}
 </head>
+
 <body>
 
 <div class="pure-menu pure-menu-horizontal">
