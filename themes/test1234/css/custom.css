@@ -12,6 +12,10 @@ body {
     background-color: darkred;
 }
 
+.pure-menu-link {
+    color: #FFF;
+}
+
 h1,
 h2,
 h3,
