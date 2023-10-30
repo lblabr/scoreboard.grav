@@ -197,6 +197,9 @@ p {
  * text and add some vertical space between the various pricing tables
  */
 @media (min-width: 767px) {
+  .banner {
+    height: 0px;
+  }
   .banner-head {
     font-size: 4em;
   }
