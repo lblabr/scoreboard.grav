@@ -211,7 +211,7 @@ p {
  */
 @media (min-width: 240px) {
   .banner {
-    height: 100px;
+    height: 0px;
   }
   .banner-head {
     font-size: 3em;
